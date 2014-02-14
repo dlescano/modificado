@@ -1,0 +1,25 @@
+{% extends 'index2.html' %}
+
+{% block contenido_principal %}
+	<div class="container">
+		{% if info_enviada %}
+			<p>Gracias por mandarnos un mensaje</p>
+			<p>nos pondremos en contacto a la brevedad</p>
+			<h2>la informacion enviada fue:</h2>
+			<p>Email:{{email}}</p>
+			<p>Titulo:{{titulom}}</p>
+			<p>Texto:</p>
+			<p>{{texto}}</p>
+			<a href="/">regresar</a>
+		{% else %}
+			<div class="container-contacto">
+				<h1>Contactate con nosotros</h1>
+				<form action="." method="POST">
+					{% csrf_token %}
+					{{form.as_p}}
+					<button type="submit" >enviar</button>
+				</form>
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}

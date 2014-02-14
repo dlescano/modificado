@@ -1,0 +1,276 @@
+body {
+	padding-top   : 20px;
+	padding-bottom: 20px;
+	background-color: #222222;
+	color:#eee;
+}
+a{
+	color:#40bf6f;
+}
+a:hover{
+	color:#5ed78c;
+}
+
+/*tipografia titulo*/
+
+@font-face { 
+	font-family: "FFFTusj";
+	src: url(FFFTusj.ttf) format("truetype");
+} 
+.titulo{ 
+	font-family: "FFFTusj", sans-serif;
+	font-size: 1.9em;
+}
+
+
+.navbar{
+	margin-bottom: 20px;
+}
+
+#map {	
+	position: absolute;
+	top     : 0;
+	bottom  : 0;
+	width   : 100%;
+	height  : 100%;
+}
+#map-2{
+	width: 100%;
+	height: 500px;
+}
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+.mobile-nav {
+	display: none;
+	position: fixed;
+	margin-top: 50px;
+	top: 0;
+	z-index: 4;
+	padding: 0 10px;
+	width: 100%;
+	background-color: rgb(255,255,255);
+	background-color: rgba(255,255,255,0.9);
+	height: 40px;
+	line-height: 40px;
+	box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.4);
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#text {
+	font-family  : 'Source Sans Pro', Helvetica, sans-serif;
+	position     : absolute;
+	top          : 10px;
+	left         : 10px;
+	background   : white;
+	z-index      : 1000;
+	padding      : 5px 10px;
+	max-width    : 260px;
+	box-shadow   : 0px 1px 7px rgba(0, 0, 0, 0.4);
+	border-radius: 5px;
+	margin       : 50px 0 0 0;
+	background   : #222222;
+	color        : #dde8d9;
+	opacity      : 0.8;
+	text-align   : center;
+
+}
+
+#text img {
+	width: 100%;
+}
+
+#text h2 {
+	font-size  : 26px;
+	line-height: 125%;
+	margin     : 0;
+	padding    : 0;
+	font-weight: normal;
+	
+}
+#text p {
+	font-size  : 16px;
+	line-height: 135%;
+	margin     : 6px 0;
+	padding    : 0;
+}
+#text form select {
+	background-color:#222;
+	border:#fff solid 1px;
+	color:#fff;
+	width:240px;
+}
+
+.olControlAttribution {
+	bottom: 5px;
+	font-size: 9px;
+}
+#customZoom {
+	z-index: 1001;
+	position: relative;
+	float:right; 
+	top: 70px;
+	left: -60px;
+	
+}
+#customZoom a {
+	text-decoration: none;
+	position: absolute;
+	display: block;
+	width: 50px;
+	text-align: center;
+	font-weight: bold;
+	color: #fff;
+	background: #369;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+#customZoom a:hover {
+	background: #036;
+}
+#customZoomOut {
+	top: 25px;
+}
+
+@media screen and (max-width: 550px) {
+	map #customZoom{
+		display: none;
+	}
+}
+
+.jumbotron{
+	background: transparent;
+	padding-bottom: 0px;
+}
+.jumbotron h1{
+	font-family: "FFFTusj", sans-serif;
+}
+
+.container-contacto{
+	padding-top: 100px;
+}
+.productos{
+	margin: 0 0 0 100px;
+}
+
+
+.container-negocio{
+	padding-bottom: 50px;
+}
+
+.info{
+	/*
+	padding: 0 0 0 15px;
+	margin: 0 -15px 0 -15px;
+	*/
+	font-size: 1.5em;
+	background-color:#222;
+	color:#eeeeee;
+	border-right: dashed #40bf6f 2px;
+
+}
+.redsocial{
+	/*margin: 0 15px 0 30px;
+	margin-bottom: 30px;
+	*/
+	background-color:#40bf6f;
+	color:#eeeeee;
+	border-top: dashed #222 2px;
+	border-right: dashed #222 2px;
+}
+.redsocial a img{
+	width: 60px;
+	height: 60px;
+	padding: 10px;
+}
+
+.foto{
+	margin: 0 ;
+	padding: 0;
+	/*border-top:dashed #fff 2px;
+	border-bottom: dashed #40bf6f 2px;
+	*/
+}
+.foto a img{
+	width: 100%;
+	height: 100%;
+	margin: 0 0 10px 10px;
+}
+
+.ofer-pro{
+	margin: 0;
+	/*background-color:#c63333;*/
+	color:#eeeeee;
+	border-top:dashed #40bf6f 2px;
+}
+
+.ofer-pro li a{
+	color:#40bf6f;
+}
+.ofer-pro li a:hover{
+	color:#333;
+}
+@media screen and (max-width: 960px) {
+	.info{
+		font-size: 1.1em;
+		border:none;
+	}
+	.redsocial{
+		margin: 10px -15px;
+		background-color:#c63333;
+		color:#eeeeee;
+		border:dashed #222 2px;
+	}
+	.ofer-pro{
+		margin: 0 -15px;
+		color:#eeeeee;
+		border:dashed #40bf6f 2px;
+	}
+	.ofer-pro .productos{
+		margin:0;
+	}
+	.foto a img{
+		width: 90%;
+		height: 90%;
+		margin: 0 0 0 10px; 
+	}
+}
+
+.navbar-inverse{
+	/*background: #40bf6f;*/
+}
+
+
+.navbar-inverse .navbar-brand {
+	color: #40bf6f;
+}
+
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+	color: #5ed78c;
+	background-color: transparent;
+}
+.navbar-inverse .navbar-nav > li > a {
+	color: #40bf6f;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+	color: #5ed78c;
+	background-color: transparent;
+}
+.a{
+	padding: 15px 20px 0 0;
+	color:#40bf6f;
+	font-size: 0.9em;
+}
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+  background-color: #111;
+}
+.imagenes a img{
+	width: 150px;
+	height: 150px;
+	margin: 5px;
+}

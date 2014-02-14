@@ -1,0 +1,68 @@
+{% extends 'index2.html' %}
+
+{% block mapa  %}
+	{% if mapaG %}
+	{{ styleform }}
+	<script src="/media/js/OpenLayers-2.13.1/OpenLayers.js"></script>
+	<script type="text/javascript">
+	function init() {
+	var map = new OpenLayers.Map({
+	div: "map",
+	layers: [new OpenLayers.Layer.OSM()],
+	controls: [
+		new OpenLayers.Control.Navigation({
+			dragPanOptions: {
+				enableKinetic: true
+			}
+		}),
+		new OpenLayers.Control.Attribution(),
+		new OpenLayers.Control.Zoom({
+			zoomInId: "customZoomIn",
+			zoomOutId: "customZoomOut"
+		})
+	],
+	center: [-7145139.92188,-3686603.25817],
+	zoom: 12
+	});
+	}
+	</script>
+	{% endif %}
+
+{% endblock %}
+{% block contenido_principal %}
+	<div id="text">		
+		<h2>seleccione una forma de busqueda</h2>
+		<form action="." method = "POST">
+			{% csrf_token %}
+			<p>Barrios: 
+			<select name="dato1" multiple="multiple" >
+				{% for b in barrios %}
+					<option value="{{ b.nombre }}">{{ b.nombre }}</option>
+				{% endfor %}
+			</select>
+			</p>
+			<p>Rubros: 
+			<select name="dato2" multiple="multiple">
+				{% for c in categorias %}
+					<option value="{{ c.nombre }}">{{ c.nombre }}</option>
+				{% endfor %}
+			</select>
+			</p>
+			 <button class="btn btn-danger" type="submit">BUSCAR</button>
+		</form>
+	</div>
+
+	<!-- * * * MAPA * * * -->
+	{% if mapaG %}
+		<div id="map">
+			
+			<div id="customZoom">
+				<a href="#customZoomIn" id="customZoomIn"> + </a>
+				<a href="#customZoomOut" id="customZoomOut"> - </a>
+			</div>
+		</div>
+	{% endif %}
+	<!-- * * * * * * * * * -->
+
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'index2.html' %}
+
+{% block contenido_principal %}
+<div class="col-md-12 jumbotron">
+	<h1>Ofertas</h1>
+</div>
+<div class="container">
+	{% if ofertas %}
+			{% for o in ofertas %}
+			<div class="col-6 col-sm-6 col-lg-4 col-md-3">
+					<h3>{{o.nombre}}</h3>
+					<p>Precio:${{o.precio}}</p>
+					<p>Marca: {{o.marca}}</p>
+					<p>Stock:
+					{% if o.stock == None%}
+							sin stock
+						{% else %}
+							{{o.stock}}
+						{% endif %}
+					</p>
+					<p>oferta valida desde: {{o.desde}}<br/>hasta: {{o.hasta}}</p>
+						<div class="imagenes">
+						{% if o.imagen1 %}
+							<a class="fancybox" rel="group" href="/media/{{o.imagen1}}"><img src="/media/{{o.imagen1}}"alt=""/></a>
+						{% endif %}
+						</div>
+					<a class="btn btn-info" href="/oferta/{{o.id}}">MAS INFO</a>
+					{% if designado or user.is_staff %}
+						<a class="btn btn-success" href="/editar_oferta/{{o.id}}">Editar</a>
+						<a class="btn btn-danger" href="/borrar_oferta/{{o.id}}">Borrar</a>
+					{% endif %}
+					</div>
+			{% endfor %}
+	{% else %}
+		<p>no hay ofertas del sitio :(</p>
+	{% endif %}
+
+<div class="col-md-12">
+	{% if ofertas %}
+		<ul class="pagination">
+			<li><a href="/listado-ofertas/pagina/{{id_neg}}/1"> << </a></li>
+			{% if ofertas.has_previous %}
+				<li><a href="/listado-ofertas/pagina/{{id_neg}}/{{ ofertas.previous_page_number }}/"> Prev </a><li>
+			{% else %}
+				<li><a href="#"> Prev </a></li>
+			{% endif %}
+			{% if ofertas.has_next %}
+				<li><a href="/listado-ofertas/pagina/{{id_neg}}/{{ofertas.next_page_number}}/"> Next </a></li>
+			{% else %}
+				<li><a href="#"> Next </a></li>
+			{% endif %}
+			<li><a href="/listado-ofertas/pagina/{{id_neg}}/{{ofertas.paginator.num_pages }}"> >> </a></li>
+		</ul>
+	{% endif %}
+</div>
+
+
+</div>
+{% endblock %}

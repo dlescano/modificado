@@ -1,0 +1,192 @@
+{% extends 'index2.html' %}
+
+{% block mapa  %}
+	<script src="/media/js/OpenLayers-2.13.1/OpenLayers.js"></script>
+	<script type="text/javascript">
+		var map,select;
+		function init() {
+		map = new OpenLayers.Map({
+			div: "map-2",
+			allOverlays: true,
+		controls: [
+			new OpenLayers.Control.Navigation({
+				dragPanOptions: {
+				enableKinetic: true
+				}
+			}),
+			new OpenLayers.Control.Attribution(),
+			new OpenLayers.Control.Zoom({
+				zoomInId: "customZoomIn",
+				zoomOutId: "customZoomOut"
+			})
+				]
+		});
+		var osm = new OpenLayers.Layer.OSM("OpenStreetMap",null,{transitionEffect: "resize",attribution: ""});
+		var myStyles = new OpenLayers.StyleMap({
+		"default": new OpenLayers.Style({
+			externalGraphic: '/media/img/poputs/popup.png',
+			graphicWidth: 28, 
+			graphicHeight: 36,
+			graphicYOffset: -24
+		})
+
+
+	});
+	var sundials = new OpenLayers.Layer.Vector("KML", {
+		styleMap: myStyles,
+		rendererOptions: {zIndexing: true},
+		projection: map.displayProjection,
+		strategies: [new OpenLayers.Strategy.Fixed()],
+		protocol: new OpenLayers.Protocol.HTTP({
+			url: "/kml2/{{negocio.id}}",
+			format: new OpenLayers.Format.KML({
+				extractStyles: true,
+				extractAttributes: true
+			})
+		})
+	});
+	map.addLayers([osm, sundials]);
+	select = new OpenLayers.Control.SelectFeature(sundials);
+	map.setCenter(new OpenLayers.LonLat({{negocio.barrios.lon}},{{negocio.barrios.lat}}),14.0);
+
+
+}
+</script>
+{% endblock %}
+
+{% block contenido_principal %}
+
+<div class="container container-negocio">
+	
+	<div class="col-md-12 jumbotron">
+		<h1>{{negocio.nombre}}</h1>
+	</div>
+
+	<div class="col-md-6 info">
+		<h2>Información</h2>
+		<p>Barrio:<br/>
+			{{negocio.barrios.nombre}}
+		</p>
+		<p>Categoria/ as: <br/>
+			{% for categorias in  negocio.categorias.all %}
+				{{ categorias.nombre }}<br/>
+			{% endfor %}
+		</p>
+		<p>Direccion: {{ negocio.direccion }}</p>
+		<p>horario de atencion: {{ negocio.horario }} </p>
+		<p>telefono: {{ negocio.telefono }}  </p>
+		<p>sucursales: {{ negocio.sucursales }} </p>
+					
+		{% if negocio.info %}
+			<h3>Detalles:</h3>
+				{{negocio.info|safe}}
+		{% endif %}
+	</div>
+
+<div class="col-md-6 foto">
+	{% if negocio.imagen %}
+		<a class="fancybox" rel="group" href="/media/{{negocio.imagen}}">
+			<img src="/media/{{negocio.imagen}}" alt=""/>
+		</a>
+	{% else %}
+		<p>sin imagen :(</p>
+	{% endif %}
+</div>
+
+<div style="clear:both;"></div>
+
+<div class="col-md-6 redsocial">
+	<h2>Redes sociales</h2>
+		{% if negocio.facebook %}
+			<a href="{{negocio.facebook}}">
+				<img src="/media/img/redsocial/Facebook1.png" alt="ver...">
+			</a>
+		{% else %}
+			<p>Sin Facebook.</p>
+		{% endif %}
+
+		{% if negocio.twitter %}
+			<a href="{{negocio.twitter}}">
+				<img src="/media/img/redsocial/Twitter1.png" alt="ver...">
+			</a>
+		{% else %}
+			<p>Sin Twitterk.</p>
+		{% endif %}
+
+
+		{% if negocio.web %}
+			<a href="{{negocio.web}}">
+				<img src="/media/img/redsocial/Home1.png" alt="ver...">
+			</a>
+		{% else %}
+		<p>sin Web.</p>
+		{% endif %}
+
+	<p>Email:
+		{% if negocio.email %}
+			{{ negocio.email }}
+		{% else %}
+			sin email.
+		{% endif %}
+	</p>
+</div>
+
+<div class="col-md-6 ofer-pro">
+	<div class="col-md-3">
+	<h3>Ofertas</h3> 
+	<ul class="list-unstyled">
+		<li>cantidad {{cantidad_ofertas_actuales}}/{{negocio.cantidad_ofertas}}</li>
+		<ul>
+			{% for oferta in ofertas %}
+				<li><a href="/oferta/{{oferta.id}}">{{oferta.nombre}}</a></li>             
+			{% endfor %}
+			{% if ofertas %}
+				<li><a href="/listado-ofertas/pagina/{{negocio.id}}/1">ver mas...</a></li>
+			{% endif %}
+			{% if designado %}
+				{% if cantidad_ofertas_actuales < negocio.cantidad_ofertas %}
+					<li><a href="/nueva_oferta/{{negocio.id}}">cargar oferta</a></li>
+				{% endif %}  
+			{% endif %} 
+		</ul>
+	</ul>
+	</div>
+
+	<div class="col-md-3  productos">
+		<h3>Productos</h3>
+		<ul class="list-unstyled">
+			<li>cantidad {{cantidad_productos_actuales}}/{{negocio.cantidad_productos}}</li>
+			<ul>
+				{% for producto in productos %}
+					<li><a href="/producto/{{producto.id}}">{{producto.nombre}}</a></li>
+				{% endfor %}
+				{% if productos %}	
+					<li><a href="/listado-productos/pagina/{{negocio.id}}/1">ver mas...</a></li>
+				{% endif %}
+				{% if designado %}
+					{% if cantidad_productos_actuales < negocio.cantidad_productos %}
+						<li><a href="/nuevo_producto/{{negocio.id}}">cargar producto</a></li>
+					{% endif %}  
+				{% endif %}
+			</ul>
+		</ul>
+	</div>
+</div>
+
+<div style="clear:both;"></div>
+
+
+</div>
+
+	{% if mapaG %}
+		<div id="map-2">
+			
+			<div id="customZoom">
+				<a href="#customZoomIn" id="customZoomIn"> + </a>
+				<a href="#customZoomOut" id="customZoomOut"> - </a>
+			</div>
+		</div>
+	{% endif %}
+
+
+{% endblock %}

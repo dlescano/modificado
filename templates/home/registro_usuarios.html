@@ -1,0 +1,9 @@
+{% extends 'index2.html' %}
+
+{% block contenido_principal %}
+	<form action="." method="POST">
+		{% csrf_token %}
+		{{formulario.as_p}}
+		<input type="submit" value="submit">
+	</form>
+{% endblock %}

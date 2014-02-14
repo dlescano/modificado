@@ -1,0 +1,12 @@
+{% extends 'index2.html' %}
+
+{% block contenido_principal %}
+<div id="contenedor-login">
+	<form class="form-horizontal" action="." method = "POST">
+		{% csrf_token %}
+		{{ mensaje }}
+		{{ form.as_p}}
+		<button type="submit">Login</button>
+	</form>
+</div>
+{% endblock %}

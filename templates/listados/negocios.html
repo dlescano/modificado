@@ -1,0 +1,40 @@
+{% extends 'index2.html' %}
+
+{% block titulo %} Negocios {% endblock %}
+
+{% block contenido_principal %}
+	<div class="container container-contacto">
+		<h2>Resutados de la Busqueda.</h2>
+		{% if negocios %}
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Negocios</th>
+						<th>Horario</th>
+						<th>Direccion</th>
+						<th>Perfil</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for n in negocios %}
+						<tr>
+							<td>{{ n.nombre }}</td>
+							<td>{{ n.horario }}</td>
+							<td>{{ n.direccion }}</td>
+							<td><a href="/Singlenegocio/{{n.id}}/">
+									<button type="button" class="btn btn-default btn-xs">
+  									<span class="glyphicon glyphicon-search"></span> Ver
+									</button>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		{% else %}
+			<p>lo lamento, no hay negocios registrados :( </p>
+		{% endif %}
+	<div class="container container-contacto">
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'index2.html' %}
+
+{% block contenido_principal %}
+<div class="container jumbotron">
+	<div class="col-md-6">
+	<h2>{{oferta.nombre}}</h2>
+	<p>Marca: {{oferta.marca}}</p>
+	<p>Precio:${{oferta.precio}}</p>
+	<p>Stock: 
+		{% if oferta.stock == None%}
+			sin stock
+		{% else %}
+			{{oferta.stock}}
+		{% endif %}
+	</p>
+	<p>oferta valida desde: {{oferta.desde}}<br/>
+	hasta: {{oferta.hasta}}</p>
+
+		<div class="imagenes">
+		{% if oferta.imagen1 or oferta.imagen2 or oferta.imagen3 %}
+			{% if oferta.imagen1 %}
+				<a class="fancybox" rel="group" href="/media/{{oferta.imagen1}}"><img src="/media/{{oferta.imagen1}}"/></a>
+			{% endif %}
+			{% if oferta.imagen2 %}
+				<a class="fancybox" rel="group" href="/media/{{oferta.imagen2}}"><img src="/media/{{oferta.imagen2}}"/></a>
+			{% endif %}
+			{% if oferta.imagen3 %}
+				<a class="fancybox" rel="group" href="/media/{{oferta.imagen3}}"><img src="/media/{{oferta.imagen3}}"/></a>
+			{% endif %}
+		{% endif %}	
+		</div>
+	</div>
+
+	<div class="col-md-6">
+		<h3>Informacion</h3>
+			{{oferta.info|safe}}
+	</div>
+
+	<div class="col-md-12">
+	<a class="btn btn-info" href="/Singlenegocio/{{oferta.negocio.id}}/">Regresar a {{oferta.negocio.nombre}}</a>
+	{% if user.is_staff or designado%}
+		<a class="btn btn-success" href="/editar_oferta/{{oferta.id}}">Editar</a>
+		<a class="btn btn-danger" href="/borrar_oferta/{{oferta.id}}">Borrar</a>
+	{% endif %}
+	</div>
+</div>
+{% endblock %}	

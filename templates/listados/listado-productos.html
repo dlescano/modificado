@@ -1,0 +1,59 @@
+{% extends 'index2.html' %}
+
+{% block contenido_principal %}
+
+	<div class="col-md-12 jumbotron">
+		<h1>Productos del sitio</h1>
+	</div>
+
+<div class="container">
+	{% if productos %}
+
+			{% for p in productos %}
+				<div class="col-6 col-sm-6 col-lg-4 col-md-3">
+					<h4>{{p.nombre}}</h4>
+					<p>precio: ${{p.precio}}</p>
+					<p>Marca: {{p.marca}}</p>
+					<p>Stock: 
+						{% if p.stock == None %}
+							sin stock
+						{% else %}
+							{{p.stock}}
+						{% endif %}
+					</p>
+						<div class="imagenes">
+							{% if p.imagen1 %}
+								<a class="fancybox" rel="group" href="/media/{{p.imagen1}}"><img class="img-polaroid imgg" src="/media/{{p.imagen1}}"/></a>
+							{% endif %}
+						</div>
+					<a class="btn btn-info" href="/producto/{{p.id}}">MAS INFO</a>
+					{% if designado or user.is_staff %}
+						<a class="btn btn-success" href="/editar_producto/{{p.id}}">Editar</a>
+						<a class="btn btn-danger" href="/borrar_producto/{{p.id}}">Borrar</a>
+					{% endif %}
+				</div>
+			{% endfor %}
+
+	{% else %}
+		<p>no haya productos del sitio :(</p>
+	{% endif %}
+	<div class="col-md-12">
+		{% if productos %}
+			<ul class="pagination">
+				<li><a href="/listado-productos/pagina/{{id_neg}}/1"> << </a></li>
+				{% if productos.has_previous %}
+					<li><a href="/listado-productos/pagina/{{id_neg}}/{{ productos.previous_page_number }}/"> Prev </a></li>
+				{% else %}
+					<li><a href="#"> Prev </a></li>
+				{% endif %}
+				{% if productos.has_next %}
+					<li><a href="/listado-productos/pagina/{{id_neg}}/{{productos.next_page_number}}/"> Next </a></li>
+				{% else %}
+					<li><a href="#"> Next </a></li>
+				{% endif %}
+				<li><a href="/listado-productos/pagina/{{id_neg}}/{{productos.paginator.num_pages }}"> >> </a></li>
+			</ul>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

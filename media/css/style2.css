@@ -1,0 +1,189 @@
+#contenedor-login{
+	position: fixed;
+	width: 340px;
+	height: 280px;
+	top: 50%;
+	left: 50%;
+	margin-top: -140px;
+	margin-left: -170px;
+	background: #fff;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+	-webkit-animation-name: bounceIn;
+	-webkit-animation-fill-mode: both;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-timing-function: linear;
+	-moz-animation-name: bounceIn;
+	-moz-animation-fill-mode: both;
+	-moz-animation-duration: 1s;
+	-moz-animation-iteration-count: 1;
+	-moz-animation-timing-function: linear;
+	animation-name: bounceIn;
+	animation-fill-mode: both;
+	animation-duration: 1s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+}
+
+#contenedor-login form {
+	margin: 0 auto;
+	margin-top: 20px;
+}
+#contenedor-login form label {
+	color: #555;
+	display: inline-block;
+	margin-left: 18px;
+	padding-top: 10px;
+	font-size: 14px;
+}
+#contenedor-login form input {
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 12px;
+	outline: none;
+}
+#contenedor-login form
+input[type=text],
+input[type=password] {
+	color: #777;
+	padding-left: 10px;
+	margin: 10px;
+	margin-top: 12px;
+	margin-left: 18px;
+	width: 290px;
+	height: 35px;
+	border: 1px solid #c7d0d2;
+	border-radius: 2px;
+	box-shadow: inset 0 1.5px 3px rgba(190, 190, 190, .4), 0 0 0 5px #f5f7f8;
+	-webkit-transition: all .4s ease;
+	-moz-transition: all .4s ease;
+	transition: all .4s ease;
+}
+
+#contenedor-login button[type=submit] {
+	float: right;
+	margin-right: 20px;
+	margin-top: 20px;
+	width: 80px;
+	height: 30px;
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 350px) {
+    #contenedor-login{
+        max-width:255px;
+        position: absolute;
+        margin-left: -128px;
+    }
+    #id_contrasenia{
+        width:220px;
+    }
+    #id_usuario{
+        max-width: 220px;
+    }
+/*modificaciones segun la tipografia*/
+/*
+    .titulo{ 
+	font-family: "FFFTusj", sans-serif;
+	font-size: 1.2em;
+	}
+*/  
+}
+
+
+
+.container-contacto form {
+	margin: 0 auto;
+	margin-top: 20px;
+}
+.container-contacto form label {
+	color: #555;
+	display: inline-block;
+	margin-left: 18px;
+	padding-top: 10px;
+	font-size: 14px;
+}
+.container-contacto form input {
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 12px;
+	outline: none;
+}
+.container-contacto form
+input[type=text],
+input[type=password] {
+	color: #777;
+	/*padding-left: 10px;*/
+	margin: 10px;
+	/*margin-top: 12px;
+	margin-left: 18px;
+*/
+	width: 290px;
+	height: 35px;
+	border: 1px solid #c7d0d2;
+}
+
+.container-contacto button[type=submit] {
+	margin-right: 20px;
+	margin-top: 20px;
+	width: 80px;
+	height: 30px;
+}
+@media screen and (max-width: 350px){
+	#id_Email{
+		max-width: 220px;
+	}
+	#id_Texto{
+		max-width: 220px;
+	}
+	#id_Titulo{
+		max-width: 220px;
+	}
+}
+
+.formulario {
+	margin-top: 50px;
+}
+.formulario  form {
+	margin: 0 auto;
+	margin-top: 20px;
+}
+.formulario  form label {
+	color: #555;
+	display: inline-block;
+	margin-left: 18px;
+	padding-top: 10px;
+	font-size: 14px;
+}
+.formulario  form input {
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 12px;
+	outline: none;
+}
+.formulario  form
+input[type=text],
+input[type=password]{
+	color: #777;
+	/*padding-left: 10px;*/
+	margin: 10px;
+	/*margin-top: 12px;
+	margin-left: 18px;
+*/
+	width: 290px;
+	height: 35px;
+	border: 1px solid #c7d0d2;
+}
+.formulario form input[type=file]{
+
+}
+
+.formulario  button[type=submit] {
+	margin-right: 20px;
+	margin-top: 20px;
+	width: 80px;
+	height: 30px;
+}
+}
