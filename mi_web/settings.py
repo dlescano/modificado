@@ -162,6 +162,6 @@ LOGGING = {
 #configuracion del correo del servidor de correo (GMAIL)
 EMAIL_HOST          = 'smtp.gmail.com'
 EMAIL_PORT          = 587
-EMAIL_HOST_USER     = 'vustralbil@gmail.com'
-EMAIL_HOST_PASSWORD = 'administrador35528411'
+EMAIL_HOST_USER     = '*******@gmail.com'
+EMAIL_HOST_PASSWORD = '********'
 EMAIL_USE_TLS       = True
